@@ -1,0 +1,17 @@
+credentials:
+  usernames:
+    rodolfo:
+      email: rodolfo@gmail.com
+      name: Rodolfo Terra
+      password: $2b$12$MPqGbJyts2GjOMw/IFAfc.jymJIXl6.h3oLBj7WGUZTL5I6OnGCfe
+    rodrigo:
+      email: rodrigo@gmail.com
+      name: Rodrigo Miorini
+      password: $2b$12$3DzXobHhcsJtZmnEao2mJ.8kwxWlITyhEgrEpQBx0OzgGjsfQMEW.
+cookie:
+  expiry_days: 30
+  key: abcdef
+  name: sala_deshboard
+preauthorized:
+  emails:
+  - melsby@gmail.com
