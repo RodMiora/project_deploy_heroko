@@ -1,0 +1,4 @@
+# Configurações do Subabase
+SUBABASE_URL = "https://qhbmxexosmbdvmnvsujk.supabase.co"
+SUBABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYm14ZXhvc21iZHZtbnZzdWprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk4Mzc4NjgsImV4cCI6MjAyNTQxMzg2OH0.XR2439pZXcttUDEgBPb83tUCjxodhaUSYq4TXYCn06w"
+
