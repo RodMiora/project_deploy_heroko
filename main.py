@@ -90,8 +90,8 @@ if authentication_status:
     # Página de Vendas
     elif page == 'Vendas':
         set_page_title('Cadastro de Vendas')
-        # Buscando dados da tabela 'vendas' do Supabase
-        data = supabase.table('vendas').select('*').execute()
+        # Buscando dados da tabela 'vendas' do Supabase que foram inseridos pelo usuário atual
+        data = supabase.table('vendas').select('*').filter('usuario', 'eq', username).execute()
         # Convertendo para DataFrame do Pandas e exibindo na página
         df_vendas = pd.DataFrame(data.data)
         st.write(df_vendas)
@@ -100,20 +100,20 @@ if authentication_status:
             st.header('Adicionar nova venda')
             # Substitua 'coluna1', 'coluna2', etc. pelos nomes reais das colunas
             for col in df_vendas.columns:
-                if col != 'id':  # Não permitir a edição do 'id'
+                if col != 'id' and col != 'usuario':  # Não permitir a edição do 'id' ou 'usuario'
                     globals()[col] = st.text_input(f'{col}')
             submit_button = st.form_submit_button(label='Adicionar venda')
         # Se o botão for pressionado, adicione a nova venda ao banco de dados
         if submit_button:
-            new_venda = {col: globals()[col] for col in df_vendas.columns if col != 'id'}
+            new_venda = {col: globals()[col] for col in df_vendas.columns if col != 'id' and col != 'usuario'}
+            new_venda['usuario'] = username  # Adiciona o usuário atual como o inseridor
             supabase.table('vendas').insert(new_venda).execute()
 
-    
     # Página de Clientes
     elif page == 'Clientes':
         set_page_title('Cadastro de Clientes')
-        # Buscando dados da tabela 'clientes' do Supabase
-        data = supabase.table('clientes').select('*').execute()
+        # Buscando dados da tabela 'clientes' do Supabase que foram inseridos pelo usuário atual
+        data = supabase.table('clientes').select('*').filter('usuario', 'eq', username).execute()
         # Convertendo para DataFrame do Pandas e exibindo na página
         df_clientes = pd.DataFrame(data.data)
         st.write(df_clientes)
@@ -122,12 +122,13 @@ if authentication_status:
             st.header('Adicionar Cliente')
             # Substitua 'coluna1', 'coluna2', etc. pelos nomes reais das colunas
             for col in df_clientes.columns:
-                if col != 'id':  # Não permitir a edição do 'id'
+                if col != 'id' and col != 'usuario':  # Não permitir a edição do 'id' ou 'usuario'
                     globals()[col] = st.text_input(f'{col}')
             submit_button = st.form_submit_button(label='Adicionar cliente')
         # Se o botão for pressionado, adicione a novo cliente ao banco de dados
         if submit_button:
-            new_cliente = {col: globals()[col] for col in df_clientes.columns if col != 'id'}
+            new_cliente = {col: globals()[col] for col in df_clientes.columns if col != 'id' and col != 'usuario'}
+            new_cliente['usuario'] = username  # Adiciona o usuário atual como o inseridor
             supabase.table('clientes').insert(new_cliente).execute()
    
 elif authentication_status == False:
