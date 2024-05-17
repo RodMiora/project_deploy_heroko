@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 web: guinicorn Painel:app
+=======
+web: gunicorn Painel:app
+>>>>>>> 885b50c63cbf4835af64f9ea0c8d9c0ec643304c
